@@ -141,7 +141,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 10.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -240,7 +240,7 @@ animations = [{
 size = Vector2(8, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu7u5"]
-size = Vector2(15, 31)
+size = Vector2(49, 31)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45w6h"]
 bg_color = Color(0, 0.7293443, 0.060525373, 1)
@@ -256,6 +256,8 @@ script = ExtResource("1_cu7u5")
 sprite_frames = SubResource("SpriteFrames_til6f")
 animation = &"attack"
 autoplay = "idle"
+frame = 4
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 9)
@@ -264,7 +266,7 @@ shape = SubResource("RectangleShape2D_tq4u8")
 [node name="AreaAttack" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaAttack"]
-position = Vector2(-7.5, 0.5)
+position = Vector2(-24.5, 0.5)
 shape = SubResource("RectangleShape2D_cu7u5")
 debug_color = Color(1, 0.0069555193, 0.07654018, 0.41960785)
 

@@ -38,6 +38,9 @@ func _physics_process(delta: float) -> void:
 func verify_receive_damage():
 	if in_attack_range:
 		health_component.receive_damage(personaje_omar.attack_damage)
+		# Solo si muere por ataque del jugador, avisamos al spawner
+		if health_component.current_health <= 0:
+			get_parent()._on_slime_killed_by_player()
 
 func on_death():
 	queue_free()
