@@ -1,0 +1,1 @@
+class_name Boss extends CharacterBody2D

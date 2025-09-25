@@ -1,0 +1,287 @@
+{
+  "bodyTypeName": "male",
+  "url": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/?utm_source=chatgpt.com#?body=Body_color_olive&head=Human_male_olive&wound_arm=none_Arm&expression=Angry_olive&legs=Pants_black&shoes=Basic_Shoes_brown&weapon=Longsword_longsword&jacket=Collared_coat_brown_striped&clothes=TShirt_white&facial_eyes=Secretary_Glasses_black&eye_color=Eye_Color_brown&wrinkes=Wrinkles_olive",
+  "spritesheets": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/spritesheets/",
+  "version": 1,
+  "datetime": "11/9/2025, 12:56:27 a.m.",
+  "credits": [
+    {
+      "fileName": "body/bodies/male/olive.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "bluecarrot16,JaidynReiman,Benjamin K. Smith (BenCreating),Evert,Eliza Wyatt (ElizaWy),TheraHedwig,MuffinElZangano,Durrani,Johannes Sjölund (wulax),Stephen Challener (Redshrike)",
+      "urls": "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles,https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-male-jumping-animation-by-durrani,https://opengameart.org/content/lpc-runcycle-and-diagonal-walkcycle,https://opengameart.org/content/lpc-revised-character-basics,https://opengameart.org/content/lpc-be-seated,https://opengameart.org/content/lpc-runcycle-for-male-muscular-and-pregnant-character-bases-with-modular-heads,https://opengameart.org/content/lpc-jump-expanded,https://opengameart.org/content/lpc-character-bases",
+      "notes": "see details at https://opengameart.org/content/lpc-character-bases; 'Thick' Male Revised Run/Climb by JaidynReiman (based on ElizaWy's LPC Revised)"
+    },
+    {
+      "fileName": "head/heads/human/male/olive.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "bluecarrot16,Benjamin K. Smith (BenCreating),Stephen Challener (Redshrike)",
+      "urls": "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles,https://opengameart.org/content/lpc-character-bases",
+      "notes": "original head by Redshrike, tweaks by BenCreating, modular version by bluecarrot16"
+    },
+    {
+      "fileName": "head/faces/male/anger/olive.png",
+      "licenses": "OGA-BY 3.0",
+      "authors": "JaidynReiman,ElizaWy,Stephen Challener (Redshrike)",
+      "urls": "https://github.com/ElizaWy/LPC/tree/main/Characters/Head,https://opengameart.org/content/ulpc-expanded-expressions",
+      "notes": "Original by Redshrike, Expressions by ElizaWy, mapped to all frames by JaidynReiman"
+    },
+    {
+      "fileName": "eyes/human/adult/anger/brown.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "JaidynReiman,Matthew Krohn (makrohn),Stephen Challener (Redshrike)",
+      "urls": "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles",
+      "notes": "original by Redshrike, mapped to all frames by Matthew Krohn & JaidynReiman"
+    },
+    {
+      "fileName": "head/wrinkles/olive.png",
+      "licenses": "CC0",
+      "authors": "bluecarrot16",
+      "urls": "",
+      "notes": ""
+    },
+    {
+      "fileName": "facial/glasses/secretary/adult/black.png",
+      "licenses": "CC-BY-SA 3.0,GPL 3.0",
+      "authors": "JaidynReiman,Thane Brimhall (pennomi),laetissima",
+      "urls": "https://opengameart.org/content/lpc-base-character-expressions",
+      "notes": "Original by Pennomi, repositioning and recolors by JaidynReiman."
+    },
+    {
+      "fileName": "torso/clothes/shortsleeve/tshirt/male/white.png",
+      "licenses": "OGA-BY 3.0",
+      "authors": "ElizaWy,JaidynReiman,Stephen Challener (Redshrike),Johannes Sjölund (wulax)",
+      "urls": "https://opengameart.org/content/lpc-revised-character-basics,https://github.com/ElizaWy/LPC/tree/main/Characters/Clothing,https://opengameart.org/content/lpc-expanded-sit-run-jump-more,https://opengameart.org/content/lpc-expanded-simple-shirts",
+      "notes": "original by ElizaWy; spellcast/thrust/shoot/hurt/male adapted from original by JaidynReiman"
+    },
+    {
+      "fileName": "torso/jacket/collared/male/brown_striped.png",
+      "licenses": "CC-BY-SA 3.0,GPL 3.0",
+      "authors": "bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-gentleman,https://opengameart.org/content/lpc-pirates",
+      "notes": ""
+    },
+    {
+      "fileName": "legs/pants/male/black.png",
+      "licenses": "OGA-BY 3.0,GPL 3.0,CC-BY-SA 3.0",
+      "authors": "bluecarrot16,JaidynReiman,ElizaWy,Matthew Krohn (makrohn),Johannes Sjölund (wulax),Stephen Challener (Redshrike)",
+      "urls": "https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles,https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-expanded-pants",
+      "notes": "original male pants by wulax, recolors and edits to v3 base by bluecarrot16, climb/jump/run/sit/emotes/revised combat by JaidynReiman based on ElizaWy's LPC Revised"
+    },
+    {
+      "fileName": "feet/shoes/basic/male/brown.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0,GPL 3.0",
+      "authors": "JaidynReiman,bluecarrot16,Johannes Sjölund (wulax)",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,http://opengameart.org/content/lpc-clothing-updates,https://opengameart.org/content/lpc-expanded-socks-shoes",
+      "notes": "original by wulax, edited for v3 base by bluecarrot16, Jump/Sit/Emote/Run/Revised Combat by JaidynReiman"
+    },
+    {
+      "fileName": "weapon/sword/longsword/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/universal_behind/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash/behind/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash_reverse/behind/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash_reverse/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_thrust/behind/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_thrust/longsword.png",
+      "licenses": "OGA-BY 3.0,CC-BY-SA 3.0",
+      "authors": "Johannes Sjölund (wulax),bluecarrot16",
+      "urls": "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites,https://opengameart.org/content/lpc-extended-weapon-animations",
+      "notes": ""
+    }
+  ],
+  "layers": [
+    {
+      "fileName": "weapon/sword/longsword/attack_slash/behind/longsword.png",
+      "zPos": -1,
+      "custom_animation": "slash_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash_reverse/behind/longsword.png",
+      "zPos": -1,
+      "custom_animation": "slash_reverse_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_thrust/behind/longsword.png",
+      "zPos": -1,
+      "custom_animation": "thrust_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/universal_behind/longsword.png",
+      "zPos": 9,
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "body/bodies/male/olive.png",
+      "zPos": 10,
+      "parentName": "body",
+      "name": "Body_color",
+      "variant": "olive",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "feet/shoes/basic/male/brown.png",
+      "zPos": 15,
+      "parentName": "shoes",
+      "name": "Basic_Shoes",
+      "variant": "brown",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "legs/pants/male/black.png",
+      "zPos": 20,
+      "parentName": "legs",
+      "name": "Pants",
+      "variant": "black",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "torso/clothes/shortsleeve/tshirt/male/white.png",
+      "zPos": 35,
+      "parentName": "clothes",
+      "name": "TShirt",
+      "variant": "white",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "torso/jacket/collared/male/brown_striped.png",
+      "zPos": 55,
+      "parentName": "jacket",
+      "name": "Collared_coat",
+      "variant": "brown striped",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "head/heads/human/male/olive.png",
+      "zPos": 100,
+      "parentName": "head",
+      "name": "Human_male",
+      "variant": "olive",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "head/faces/male/anger/olive.png",
+      "zPos": 101,
+      "parentName": "expression",
+      "name": "Angry",
+      "variant": "olive",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "head/wrinkles/olive.png",
+      "zPos": 102,
+      "parentName": "wrinkes",
+      "name": "Wrinkles",
+      "variant": "olive",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "eyes/human/adult/anger/brown.png",
+      "zPos": 105,
+      "parentName": "eye_color",
+      "name": "Eye_Color",
+      "variant": "brown",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "facial/glasses/secretary/adult/black.png",
+      "zPos": 115,
+      "parentName": "facial_eyes",
+      "name": "Secretary_Glasses",
+      "variant": "black",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering,idle,jump,run,sit,emote,climb,combat,1h_slash,1h_backslash,1h_halfslash"
+    },
+    {
+      "fileName": "weapon/sword/longsword/longsword.png",
+      "zPos": 140,
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash/longsword.png",
+      "zPos": 150,
+      "custom_animation": "slash_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_slash_reverse/longsword.png",
+      "zPos": 150,
+      "custom_animation": "slash_reverse_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    },
+    {
+      "fileName": "weapon/sword/longsword/attack_thrust/longsword.png",
+      "zPos": 150,
+      "custom_animation": "thrust_oversize",
+      "parentName": "weapon",
+      "name": "Longsword",
+      "variant": "longsword",
+      "supportedAnimations": "spellcast,thrust,walk,slash,shoot,hurt,watering"
+    }
+  ]
+}

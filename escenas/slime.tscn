@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://c61anvsnkj4dk"]
+
+[ext_resource type="Script" uid="uid://d37eq1henxgvy" path="res://scripts/slime.gd" id="1_epd2e"]
+[ext_resource type="Texture2D" uid="uid://boku7s860wl8o" path="res://assets/monsters/Basic Monster Animations/Death Slime/DeathSlime.png" id="1_ht7h0"]
+[ext_resource type="PackedScene" uid="uid://bwdgjdnbfmyi5" path="res://components/health_component.tscn" id="3_ckuph"]
+[ext_resource type="Script" uid="uid://5uo8vxq6ecdn" path="res://components/health_component.gd" id="4_brl6k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epd2e"]
+atlas = ExtResource("1_ht7h0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5loq"]
+atlas = ExtResource("1_ht7h0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckuph"]
+atlas = ExtResource("1_ht7h0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brl6k"]
+atlas = ExtResource("1_ht7h0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_55p85"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epd2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5loq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckuph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brl6k")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_epd2e"]
+radius = 4.1231055
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ckuph"]
+bg_color = Color(0.97550696, 0, 0.15349266, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="slime" type="CharacterBody2D"]
+script = ExtResource("1_epd2e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_55p85")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_epd2e")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="HealthComponent" parent="Components" node_paths=PackedStringArray("progress_bar") instance=ExtResource("3_ckuph")]
+script = ExtResource("4_brl6k")
+progress_bar = NodePath("../../ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -17.0
+offset_top = -11.0
+offset_right = 17.0
+offset_bottom = -6.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_ckuph")
+value = 100.0
+show_percentage = false
