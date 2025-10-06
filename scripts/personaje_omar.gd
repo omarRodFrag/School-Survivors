@@ -78,9 +78,13 @@ func _on_area_attack_body_entered(body: Node2D) -> void:
 		body.in_attack_range = true
 	elif body is Boss:
 		body.in_attack_range = true
+	elif body is Orc:
+		body.in_attack_range = true
 
 func _on_area_attack_body_exited(body: Node2D) -> void:
 	if body is Enemy:
 		body.in_attack_range = false
 	elif body is Boss:
+		body.in_attack_range = false
+	elif body is Orc:
 		body.in_attack_range = false

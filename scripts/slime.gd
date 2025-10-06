@@ -1,6 +1,6 @@
 class_name Enemy extends CharacterBody2D
 
-var move_speed := 50
+var move_speed := 30
 var attack_damage := 10
 var is_attack := false
 var in_attack_range := false
