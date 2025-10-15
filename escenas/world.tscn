@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbdfdaa0r75mf"]
+[gd_scene load_steps=8 format=3 uid="uid://cbdfdaa0r75mf"]
 
 [ext_resource type="PackedScene" uid="uid://cwn272rabpdwj" path="res://escenas/personaje_Omar.tscn" id="1_7jpok"]
 [ext_resource type="Script" uid="uid://n75k75crtlrl" path="res://scripts/world.gd" id="1_58mta"]
 [ext_resource type="PackedScene" uid="uid://cp3guini8tlhx" path="res://tilemap.tscn" id="2_xsxho"]
 [ext_resource type="Script" uid="uid://c71jyqw21tgk5" path="res://scripts/HUD.gd" id="4_3f1ia"]
 [ext_resource type="AudioStream" uid="uid://ch4x0ha838bpi" path="res://assets/sonidos/musica_fondo.mp3" id="5_jhysc"]
+[ext_resource type="PackedScene" uid="uid://b7px62opvuwx3" path="res://escenas/pausa.tscn" id="6_iop0s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jhysc"]
 font_size = 40
@@ -63,3 +64,5 @@ vertical_alignment = 1
 stream = ExtResource("5_jhysc")
 volume_db = -25.0
 parameters/looping = true
+
+[node name="Pausa" parent="." instance=ExtResource("6_iop0s")]
