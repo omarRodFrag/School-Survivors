@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7px62opvuwx3"]
+[gd_scene load_steps=4 format=3 uid="uid://b7px62opvuwx3"]
 
 [ext_resource type="Script" uid="uid://bdwmfjvdjpj01" path="res://scripts/pausa.gd" id="1_ety1p"]
 [ext_resource type="Texture2D" uid="uid://tgybpaq10mp6" path="res://assets/mios/Pausa.png" id="2_5fhux"]
+[ext_resource type="Texture2D" uid="uid://bsrlbnbgrejpn" path="res://assets/mios/Salir (1).png" id="3_xn2lb"]
 
 [node name="Pausa" type="CanvasLayer"]
 process_mode = 3
@@ -18,8 +19,18 @@ color = Color(0.12156863, 0.12156863, 0.12156863, 0.43137255)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
-offset_left = 767.0
-offset_top = 407.0
-offset_right = 1192.0
-offset_bottom = 617.0
+offset_left = 763.0
+offset_top = 315.0
+offset_right = 1188.0
+offset_bottom = 525.0
 texture = ExtResource("2_5fhux")
+
+[node name="Salir_Boton" type="TextureButton" parent="."]
+visible = false
+offset_left = 819.0
+offset_top = 594.0
+offset_right = 1119.0
+offset_bottom = 724.0
+texture_normal = ExtResource("3_xn2lb")
+
+[connection signal="pressed" from="Salir_Boton" to="." method="_on_salir_boton_pressed"]

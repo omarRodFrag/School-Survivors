@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="School Survivor_v1"
-run/main_scene="uid://cbdfdaa0r75mf"
+run/main_scene="uid://mfx72aoyms32"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 run/max_fps=60
 config/icon="res://icon.svg"
