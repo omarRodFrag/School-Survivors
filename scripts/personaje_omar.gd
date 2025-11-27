@@ -3,13 +3,20 @@ class_name Player extends CharacterBody2D
 var move_speed := 150
 var attack_damage := 50
 var is_attack := false
-var is_dead := false        # nuevo: marca si el jugador está muerto
+var is_dead := false
 
 signal attack_finished
 
 @onready var cam = $Camera2D
 @onready var sprite_animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health_component: HealthComponent = $Components/HealthComponent
+
+# ---------- NUEVO: preload de la ráfaga ----------
+@export var WindProjectileScene: PackedScene = preload("uid://ca51t7je6qlgt")
+@export var projectile_offset := 20.0
+@export var projectile_speed := 300.0
+@export var projectile_damage := 50
+# -------------------------------------------------
 
 func _ready() -> void:
 	health_component.death.connect(on_death)
@@ -21,7 +28,7 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				attack()
-				
+
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
@@ -41,50 +48,53 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func on_death():
-	# Se llama cuando HealthComponent emite death
 	if is_dead:
-		return # prevenir llamadas dobles
+		return
 	is_dead = true
-
-	# reproducir animación de muerte
 	sprite_animation.play("death")
-
-	# detener movimiento físico (ya no queremos que siga moviéndose)
 	velocity = Vector2.ZERO
-	set_physics_process(false) # deshabilita _physics_process
-	# NO pauseamos aquí — esperamos a que termine la animación
+	set_physics_process(false)
 
 func attack():
 	if is_dead:
 		return
 	sprite_animation.play("attack")
 	is_attack = true
-	
+	# Spawnear la ráfaga aquí (si quieres sincronizar a frame, ver nota abajo)
+	spawn_wind()
+
 func _on_animated_sprite_2d_animation_finished() -> void:
-	# Esta función se dispara cuando termina cualquier animación del AnimatedSprite2D
-	# Verificamos cuál terminó y actuamos en consecuencia.
 	if sprite_animation.animation == "attack":
 		is_attack = false
 		attack_finished.emit()
 	elif sprite_animation.animation == "death":
 		print("game over")
-		# Aquí sí: la animación de muerte ya acabó -> pausar el juego
 		get_tree().paused = true
 
 func _on_area_attack_body_entered(body: Node2D) -> void:
 	if is_dead:
 		return
-	if body is Enemy:
-		body.in_attack_range = true
-	elif body is Boss:
-		body.in_attack_range = true
-	elif body is Orc:
+	if body is Enemy or body is Boss or body is Orc:
 		body.in_attack_range = true
 
 func _on_area_attack_body_exited(body: Node2D) -> void:
-	if body is Enemy:
+	if body is Enemy or body is Boss or body is Orc:
 		body.in_attack_range = false
-	elif body is Boss:
-		body.in_attack_range = false
-	elif body is Orc:
-		body.in_attack_range = false
+
+# ---------- NUEVO: función para crear el proyectil ----------
+func spawn_wind() -> void:
+	# calcula dirección hacia el mouse (top-down): si quieres otro método, cámbialo
+	var dir := (get_global_mouse_position() - global_position).normalized()
+	if dir == Vector2.ZERO:
+		# fallback: usa la orientación horizontal del sprite
+		dir = Vector2.RIGHT if sprite_animation.flip_h == false else Vector2.LEFT
+
+	var inst = WindProjectileScene.instantiate()
+	# posicion frontal para no golpear al propio jugador
+	inst.global_position = global_position + dir * projectile_offset
+	inst.direction = dir
+	inst.speed = projectile_speed
+	inst.damage = projectile_damage
+	# si quieres que atraviese: inst.pierce = true
+	get_tree().current_scene.add_child(inst)
+# ---------------------------------------------------------

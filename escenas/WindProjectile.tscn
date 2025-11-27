@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca51t7je6qlgt"]
+
+[ext_resource type="Script" uid="uid://bky7p0ido5xld" path="res://scripts/WindProjectile.gd" id="1_jb4qn"]
+[ext_resource type="Texture2D" uid="uid://sj6xdbc5u8c2" path="res://assets/mios/sprites.png" id="2_2kmxv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71ktw"]
+atlas = ExtResource("2_2kmxv")
+region = Rect2(384, 396, 32, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_chgwa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71ktw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_jb4qn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_chgwa")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -2, 1, -2, 1, -5, 2, -5, 2, -8, 3, -8, 3, -10, 4, -10, 4, -12, 5, -12, 6, -13, 9, -14, 11, -15, 13, -16, 14, -17, 14, -18, 9, -18, 4, -17, 2, -16, 0, -15, -1, -14, -2, -13, -3, -12, -4, -10, -5, -9, -6, -7, -7, -5, -7, 6, -6, 7, -5, 9, -3, 10, -2, 11, -1, 13, 0, 14, 3, 14, 3, 12, 2, 11, 1, 8, 0, 8)

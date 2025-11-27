@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cwn272rabpdwj" path="res://escenas/personaje_Omar.tscn" id="1_7jpok"]
 [ext_resource type="Script" uid="uid://n75k75crtlrl" path="res://scripts/world.gd" id="1_58mta"]
-[ext_resource type="PackedScene" uid="uid://cp3guini8tlhx" path="res://tilemap.tscn" id="2_xsxho"]
+[ext_resource type="PackedScene" uid="uid://cp3guini8tlhx" path="res://escenas/tilemap.tscn" id="2_xsxho"]
 [ext_resource type="Script" uid="uid://c71jyqw21tgk5" path="res://scripts/HUD.gd" id="4_3f1ia"]
 [ext_resource type="AudioStream" uid="uid://ch4x0ha838bpi" path="res://assets/sonidos/musica_fondo.mp3" id="5_jhysc"]
 [ext_resource type="PackedScene" uid="uid://b7px62opvuwx3" path="res://escenas/pausa.tscn" id="6_iop0s"]
