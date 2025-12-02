@@ -1,0 +1,120 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq8yak2m3n4p5"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_game_over"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0, 0, 0, 0.7)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="GameOver" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_game_over")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(500, 400)
+
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(500, 400)
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContent" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Puntuación: 0"
+horizontal_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Mejor Puntuación: 0"
+horizontal_alignment = 1
+
+[node name="NewRecordLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+visible = false
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+text = "¡NUEVO RÉCORD!"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="CenterContainer/VBoxContainer/Panel/VBoxContent/HBoxButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(200, 50)
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+text = "Reintentar"
+
+[node name="MenuButton" type="Button" parent="CenterContainer/VBoxContainer/Panel/VBoxContent/HBoxButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(200, 50)
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+text = "Menú Principal"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Panel/VBoxContent/HBoxButtons/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Panel/VBoxContent/HBoxButtons/MenuButton" to="." method="_on_menu_button_pressed"]
+

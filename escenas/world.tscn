@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbdfdaa0r75mf"]
+[gd_scene load_steps=13 format=3 uid="uid://cbdfdaa0r75mf"]
 
 [ext_resource type="PackedScene" uid="uid://cwn272rabpdwj" path="res://escenas/personaje_Omar.tscn" id="1_7jpok"]
 [ext_resource type="Script" uid="uid://n75k75crtlrl" path="res://scripts/world.gd" id="1_58mta"]
@@ -6,15 +6,55 @@
 [ext_resource type="Script" uid="uid://c71jyqw21tgk5" path="res://scripts/HUD.gd" id="4_3f1ia"]
 [ext_resource type="AudioStream" uid="uid://ch4x0ha838bpi" path="res://assets/sonidos/musica_fondo.mp3" id="5_jhysc"]
 [ext_resource type="PackedScene" uid="uid://b7px62opvuwx3" path="res://escenas/pausa.tscn" id="6_iop0s"]
+[ext_resource type="PackedScene" uid="uid://bq8yak2m3n4p5" path="res://escenas/game_over.tscn" id="7_game_over"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.1, 0.1, 0.1, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.3, 0.3, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_bg"]
+bg_color = Color(0.15, 0.15, 0.15, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_green"]
+bg_color = Color(0, 0.7293443, 0.060525373, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_message_bg"]
+bg_color = Color(0, 0, 0, 0.7)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_jhysc"]
 font_size = 40
+outline_size = 4
+outline_color = Color(0, 0, 0, 0.8)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_58mta")
 
 [node name="TileMapLayers" parent="." instance=ExtResource("2_xsxho")]
-position = Vector2(-291, -334)
 
 [node name="personaje_Omar" parent="." instance=ExtResource("1_7jpok")]
 position = Vector2(314, 140)
@@ -32,30 +72,73 @@ offset_bottom = 40.0
 layout_mode = 2
 
 [node name="Panel" type="Panel" parent="HUD/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(220, 110)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="LabelScore" type="Label" parent="HUD/MarginContainer/VBoxContainer/Panel"]
+[node name="VBoxContent" type="VBoxContainer" parent="HUD/MarginContainer/VBoxContainer/Panel"]
 layout_mode = 0
-offset_top = 2.0
-offset_right = 40.0
-offset_bottom = 25.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 208.0
+offset_bottom = 98.0
+theme_override_constants/separation = 6
 
-[node name="LabelLevel" type="Label" parent="HUD/MarginContainer/VBoxContainer/Panel"]
-layout_mode = 0
-offset_top = 26.0
-offset_right = 40.0
-offset_bottom = 49.0
+[node name="LabelScore" type="Label" parent="HUD/MarginContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "Puntos: 0"
 
-[node name="LabelKills" type="Label" parent="HUD/MarginContainer/VBoxContainer/Panel"]
-layout_mode = 0
-offset_top = 49.0
-offset_right = 40.0
-offset_bottom = 72.0
+[node name="LabelLevel" type="Label" parent="HUD/MarginContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "Nivel: 1"
 
-[node name="MessageLabel" type="Label" parent="HUD/MarginContainer/VBoxContainer"]
+[node name="LabelKills" type="Label" parent="HUD/MarginContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "Progreso: 0 / 10"
+
+[node name="HealthBarContainer" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HealthLabel" type="Label" parent="HUD/MarginContainer/VBoxContainer/HealthBarContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
+text = "Vida:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/MarginContainer/VBoxContainer/HealthBarContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_health_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_health_green")
+value = 100.0
+
+[node name="MessageCenterContainer" type="CenterContainer" parent="HUD"]
+offset_left = 791.0
+offset_top = 409.0
+offset_right = 791.0
+offset_bottom = 409.0
+
+[node name="MessagePanel" type="Panel" parent="HUD/MessageCenterContainer"]
 visible = false
+custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_message_bg")
+
+[node name="MessageLabel" type="Label" parent="HUD/MessageCenterContainer/MessagePanel"]
+visible = false
+layout_mode = 0
+text = "Mensaje"
 label_settings = SubResource("LabelSettings_jhysc")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -66,3 +149,5 @@ volume_db = -25.0
 parameters/looping = true
 
 [node name="Pausa" parent="." instance=ExtResource("6_iop0s")]
+
+[node name="GameOver" parent="." instance=ExtResource("7_game_over")]

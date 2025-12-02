@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 ScoreManager="*res://scripts/ScoreManager.gd"
+SaveManager="*res://scripts/SaveManager.gd"
 
 [display]
 

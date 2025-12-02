@@ -14,10 +14,25 @@ var time_left: float
 func _ready() -> void:
 	time_left = lifetime
 	connect("body_entered", Callable(self, "_on_body_entered"))
+	connect("area_entered", Callable(self, "_on_area_entered"))
 	_update_visual()
 
 func _physics_process(delta: float) -> void:
-	position += direction * speed * delta
+	var movement = direction * speed * delta
+	
+	# Verificar colisión con TileMap usando raycast antes de mover
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, global_position + movement)
+	query.collision_mask = 1  # Layer 1 es el TileMap
+	query.exclude = [self]  # Excluir el propio proyectil
+	
+	var result = space_state.intersect_ray(query)
+	if result:
+		# Colisión detectada con TileMap u objeto estático - destruir proyectil
+		queue_free()
+		return
+	
+	position += movement
 	time_left -= delta
 	if time_left <= 0.0:
 		queue_free()
@@ -25,6 +40,18 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node) -> void:
 	# Ignorar el player
 	if body is Player:
+		return
+	
+	# Detectar colisión con paredes/objetos estáticos (TileMapLayer, StaticBody2D, etc.)
+	if body is TileMapLayer or body is StaticBody2D:
+		# Colisión con pared/objeto estático - destruir proyectil sin dañar
+		queue_free()
+		return
+	
+	# Verificar si tiene CollisionShape2D pero no es CharacterBody2D (puede ser un objeto estático)
+	if body.has_node("CollisionShape2D") and not (body is CharacterBody2D):
+		# Posible objeto estático - destruir proyectil
+		queue_free()
 		return
 
 	# Nos interesan solo CharacterBody2D (tus enemigos)
@@ -69,14 +96,12 @@ func _on_body_entered(body: Node) -> void:
 				mass = float(m)
 			body.set("velocity", vel + kb_dir * (knockback_strength / max(mass, 1.0)))
 
-	# Notificar al spawner si murió (manteniendo tu flujo actual)
+	# Emitir señal del enemigo si murió por el proyectil
 	if hc.current_health <= 0:
-		var p = body.get_parent()
-		if p:
-			if p.has_method("_on_slime_killed_by_player"):
-				p._on_slime_killed_by_player()
-			elif p.has_method("_on_boss_killed_by_player"):
-				p._on_boss_killed_by_player()
+		if body is Boss:
+			body.boss_killed.emit()
+		elif body is Enemy or body is Orc:
+			body.enemy_killed.emit()
 
 	# destruir si no atraviesa
 	if not pierce:
@@ -90,3 +115,19 @@ func set_direction(dir: Vector2) -> void:
 func _update_visual() -> void:
 	# Tu sprite mira a la izquierda, así que la rotación base debe compensarse sumando PI
 	rotation = direction.angle() + PI
+
+# Detectar colisiones con áreas (TileMapLayer puede generar esta señal)
+func _on_area_entered(area: Area2D) -> void:
+	# Detectar si colisionamos con el área del TileMap o un área estática
+	# Si es un TileMapLayer o un área con física estática, destruir proyectil
+	if area.get_parent() is TileMapLayer:
+		queue_free()
+		return
+	
+	# Si el área tiene CollisionShape2D pero no es del jugador ni un enemigo, asumir que es estático
+	if area.has_node("CollisionShape2D"):
+		# Verificar que no sea un área del jugador o enemigo
+		var parent = area.get_parent()
+		if not (parent is Player or parent is CharacterBody2D):
+			queue_free()
+			return

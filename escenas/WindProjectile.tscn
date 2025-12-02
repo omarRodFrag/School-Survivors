@@ -19,6 +19,7 @@ animations = [{
 }]
 
 [node name="Area2D" type="Area2D"]
+collision_mask = 1
 script = ExtResource("1_jb4qn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

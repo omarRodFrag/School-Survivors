@@ -1,7 +1,7 @@
 extends CanvasLayer
 @onready var salir_boton: TextureButton = $Salir_Boton
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Pausa"):
 		get_tree().paused = not get_tree().paused
 		$ColorRect.visible = not $ColorRect.visible
