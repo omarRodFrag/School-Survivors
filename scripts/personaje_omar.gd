@@ -126,12 +126,7 @@ func spawn_wind() -> void:
 	inst.speed = projectile_speed
 	inst.damage = projectile_damage
 	# si quieres que atraviese: inst.pierce = true
-	# Agregar al árbol de forma robusta
-	var scene_root = get_tree().current_scene
-	if not scene_root:
-		scene_root = get_tree().root.get_child(get_tree().root.get_child_count() - 1)
-	if scene_root:
-		scene_root.add_child(inst)
+	get_tree().current_scene.add_child(inst)
 # ---------------------------------------------------------
 
 func _show_game_over() -> void:
@@ -145,5 +140,6 @@ func _show_game_over() -> void:
 			game_over.show_game_over(final_score, final_level)
 		else:
 			# Fallback: solo pausar si no se encuentra la escena
-			print("game over - GameOver scene not found")
+			push_error("GameOver scene not found")
 			get_tree().paused = true
+# ---------------------------------------------------------

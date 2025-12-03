@@ -22,6 +22,11 @@ func update_health_bar():
 
 func receive_damage(amount : int):
 	current_health = clamp(current_health - amount, 0, max_health)
+	
+	# Registrar daño recibido en GameStats (solo para el jugador)
+	if GameStats and get_parent() is Player:
+		GameStats.add_damage_taken(amount)
+	
 	update_health_bar()
 	if current_health <=0:
 		on_death()

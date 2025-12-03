@@ -27,6 +27,16 @@ func _ready() -> void:
 	if personaje_omar:
 		personaje_omar.attack_finished.connect(verify_receive_damage)
 
+# Función para aplicar multiplicadores de dificultad
+func apply_difficulty(speed_multiplier: float, health_multiplier: float) -> void:
+	move_speed = int(move_speed * speed_multiplier)
+	max_health_value = int(max_health_value * health_multiplier)
+	# Actualizar vida actual también
+	if health_component:
+		health_component.max_health = max_health_value
+		health_component.current_health = max_health_value
+		health_component.update_health_bar()
+
 func _find_player() -> void:
 	# Intentar encontrar el jugador en el árbol
 	var parent = get_parent()
@@ -142,6 +152,9 @@ func verify_receive_damage():
 	if in_attack_range and personaje_omar:
 		health_component.receive_damage(personaje_omar.attack_damage)
 		if health_component.current_health <= 0:
+			# Registrar estadística antes de emitir señal
+			if GameStats:
+				GameStats.add_boss_kill()
 			# Emitimos señal cuando el boss es eliminado
 			boss_killed.emit()
 

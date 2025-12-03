@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbdfdaa0r75mf"]
+[gd_scene load_steps=14 format=3 uid="uid://cbdfdaa0r75mf"]
 
 [ext_resource type="PackedScene" uid="uid://cwn272rabpdwj" path="res://escenas/personaje_Omar.tscn" id="1_7jpok"]
 [ext_resource type="Script" uid="uid://n75k75crtlrl" path="res://scripts/world.gd" id="1_58mta"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://ch4x0ha838bpi" path="res://assets/sonidos/musica_fondo.mp3" id="5_jhysc"]
 [ext_resource type="PackedScene" uid="uid://b7px62opvuwx3" path="res://escenas/pausa.tscn" id="6_iop0s"]
 [ext_resource type="PackedScene" uid="uid://bq8yak2m3n4p5" path="res://escenas/game_over.tscn" id="7_game_over"]
+[ext_resource type="PackedScene" uid="uid://0nxwcotcidcx" path="res://escenas/victory_screen.tscn" id="8_victory"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.1, 0.1, 0.1, 0.85)
@@ -151,3 +152,5 @@ parameters/looping = true
 [node name="Pausa" parent="." instance=ExtResource("6_iop0s")]
 
 [node name="GameOver" parent="." instance=ExtResource("7_game_over")]
+
+[node name="VictoryScreen" parent="." instance=ExtResource("8_victory")]

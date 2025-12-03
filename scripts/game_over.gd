@@ -21,7 +21,7 @@ func _ready() -> void:
 func show_game_over(final_score: int, final_level: int) -> void:
 	# Verificar que SaveManager existe
 	if not SaveManager:
-		print("[GameOver] Error: SaveManager no encontrado")
+		push_error("[GameOver] Error: SaveManager no encontrado")
 		return
 	
 	# Obtener high score antes de verificar si es nuevo récord
@@ -57,7 +57,7 @@ func show_game_over(final_score: int, final_level: int) -> void:
 func _on_retry_button_pressed() -> void:
 	# Verificar que ScoreManager existe
 	if not ScoreManager:
-		print("[GameOver] Error: ScoreManager no encontrado")
+		push_error("[GameOver] Error: ScoreManager no encontrado")
 		return
 	
 	# Despausar y reiniciar
@@ -68,7 +68,7 @@ func _on_retry_button_pressed() -> void:
 func _on_menu_button_pressed() -> void:
 	# Verificar que ScoreManager existe
 	if not ScoreManager:
-		print("[GameOver] Error: ScoreManager no encontrado")
+		push_error("[GameOver] Error: ScoreManager no encontrado")
 		return
 	
 	# Despausar y volver al menú

@@ -4,9 +4,8 @@ extends CanvasLayer
 @onready var label_score: Label = $MarginContainer/VBoxContainer/Panel/VBoxContent/LabelScore
 @onready var label_level: Label = $MarginContainer/VBoxContainer/Panel/VBoxContent/LabelLevel
 @onready var label_kills: Label = $MarginContainer/VBoxContainer/Panel/VBoxContent/LabelKills
-@onready var message_panel: Panel = $MessageCenterContainer/MessagePanel
 @onready var message_label: Label = $MessageCenterContainer/MessagePanel/MessageLabel
-@onready var health_bar: ProgressBar = $MarginContainer/VBoxContainer/HealthBarContainer/HealthBar
+@onready var message_panel: Panel = $MessageCenterContainer/MessagePanel
 @onready var _msg_timer: Timer = Timer.new()
 
 var message_duration := 2.0
@@ -34,11 +33,6 @@ func _ready() -> void:
 		message_panel.visible = false
 	if message_label:
 		message_label.visible = false
-	
-	# Configurar barra de vida inicial (Godot 4 usa max_value)
-	if health_bar:
-		health_bar.max_value = 100
-		health_bar.value = 100
 
 	# Intentamos enlazar al ScoreManager de forma robusta
 	if Engine.has_singleton("ScoreManager"):
@@ -53,27 +47,34 @@ func _ready() -> void:
 
 	# Conectar señales si encontramos el ScoreManager
 	if _score_manager:
+		# Para evitar dobles conexiones, desconectamos primero si existieran (silencioso)
+		# (catch en try para evitar errores si no está conectado)
+		# Conectar señales
 		_score_manager.connect("score_changed", Callable(self, "_on_score_changed"))
 		_score_manager.connect("level_changed", Callable(self, "_on_level_changed"))
 		_score_manager.connect("kills_changed", Callable(self, "_on_kills_changed"))
 		print("[HUD] Conectadas señales a ScoreManager")
 
+		# Forzar sincronización inicial (en caso de que ScoreManager ya tuviera estado)
 		if "score" in _score_manager:
 			_on_score_changed(_score_manager.score)
 		if "level" in _score_manager:
 			_on_level_changed(_score_manager.level)
+		# kills_changed se emitirá cuando sea necesario
 
 func _on_score_changed(new_score: int) -> void:
-	print("[HUD] _on_score_changed recibido:", new_score)
 	label_score.text = "Puntos: %d" % new_score
 
 func _on_level_changed(new_level: int) -> void:
-	print("[HUD] _on_level_changed recibido:", new_level)
 	label_level.text = "Nivel: %d" % new_level
+	
+	# No mostrar mensaje de nivel si es el nivel máximo (se mostrará la pantalla de victoria después)
+	if ScoreManager and new_level >= ScoreManager.MAX_LEVEL:
+		return  # Es el nivel final, no mostrar mensaje
+	
 	_show_message("¡Nivel %d!" % new_level, 1.6)
 
 func _on_kills_changed(kills_this_level: int, kills_to_next_level: int) -> void:
-	print("[HUD] _on_kills_changed recibido:", kills_this_level, kills_to_next_level)
 	label_kills.text = "Progreso: %d / %d" % [kills_this_level, kills_to_next_level]
 
 func _show_message(text: String, duration: float = -1.0) -> void:
@@ -119,44 +120,12 @@ func _on_message_timeout() -> void:
 		).set_delay(0.15)
 
 func show_boss_incoming() -> void:
-	_show_message("¡Jefe en Camino!", 2.0)
+	_show_message("¡Jefe incoming!", 2.0)
 
 func show_level_completed() -> void:
 	_show_message("¡Nivel completado!", 2.0)
 
-func update_health_bar(current_health: int, max_health: int) -> void:
-	if not health_bar:
-		return
-
-	# Evitar división por cero
-	if max_health <= 0:
-		max_health = 1
-
-	# Godot 4 usa max_value
-	health_bar.max_value = max_health
-	health_bar.value = clamp(current_health, 0, max_health)
-	
-	# Cambiar color según porcentaje de vida
-	var health_percentage = float(health_bar.value) / float(health_bar.max_value)
-
-	# Crear estilos dinámicamente
-	var style_green = StyleBoxFlat.new()
-	style_green.bg_color = Color(0, 0.7293443, 0.060525373, 1)
-	style_green.corner_radius_top_left = 3
-	style_green.corner_radius_top_right = 3
-	style_green.corner_radius_bottom_right = 3
-	style_green.corner_radius_bottom_left = 3
-	
-	var style_red = StyleBoxFlat.new()
-	style_red.bg_color = Color(0.7293443, 0.060525373, 0, 1)
-	style_red.corner_radius_top_left = 3
-	style_red.corner_radius_top_right = 3
-	style_red.corner_radius_bottom_right = 3
-	style_red.corner_radius_bottom_left = 3
-	
-	if health_percentage <= 0.3:
-		# Rojo para vida baja — usar set con path de propiedad
-		health_bar.set("theme_override_styles/fill", style_red)
-	else:
-		# Verde para vida normal/alta
-		health_bar.set("theme_override_styles/fill", style_green)
+func update_health_bar(_current_health: int, _max_health: int) -> void:
+	# Esta función puede ser llamada desde world.gd si hay una barra de vida en el HUD
+	# Por ahora solo la dejamos aquí por compatibilidad
+	pass

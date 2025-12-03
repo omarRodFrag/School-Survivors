@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 ScoreManager="*res://scripts/ScoreManager.gd"
 SaveManager="*res://scripts/SaveManager.gd"
+GameStats="*res://scripts/GameStats.gd"
 
 [display]
 

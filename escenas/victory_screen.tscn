@@ -1,0 +1,145 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq8x9k2m3n4p6v"]
+
+[ext_resource type="Script" path="res://scripts/victory_screen.gd" id="1_victory"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0, 0.4, 0, 0.8)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="VictoryScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_victory")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(600, 550)
+
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(600, 550)
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContent" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+text = "¡FELICIDADES! ¡GANASTE!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Puntuación Final: 0"
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Tiempo Total: 00:00"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="StatsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="StatsTitle" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent/StatsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Estadísticas:"
+horizontal_alignment = 1
+
+[node name="SlimesLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent/StatsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Slimes Eliminados: 0"
+horizontal_alignment = 1
+
+[node name="OrcsLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent/StatsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Orcos Eliminados: 0"
+horizontal_alignment = 1
+
+[node name="BossesLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent/StatsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Jefes Eliminados: 0"
+horizontal_alignment = 1
+
+[node name="DamageLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent/StatsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Daño Recibido: 0"
+horizontal_alignment = 1
+
+[node name="LevelsLabel" type="Label" parent="CenterContainer/VBoxContainer/Panel/VBoxContent/StatsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Niveles Completados: 0"
+horizontal_alignment = 1
+
+[node name="Spacer3" type="Control" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="CenterContainer/VBoxContainer/Panel/VBoxContent"]
+layout_mode = 2
+custom_minimum_size = Vector2(250, 50)
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+text = "Volver al Menú Principal"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Panel/VBoxContent/MenuButton" to="." method="_on_menu_button_pressed"]
+
+
+
