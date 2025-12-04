@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://touch_attack_button"]
+
+[ext_resource type="Script" path="res://scripts/TouchAttackButton.gd" id="1_tab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.3, 0.3, 0.6, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.5, 0.8, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="TouchAttackButton" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -140.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_tab")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_button")
+
+[node name="ButtonLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_font_sizes/font_size = 16
+text = "ATAQUE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+

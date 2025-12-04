@@ -1,5 +1,11 @@
+# Pantalla de Victoria
+# Se muestra cuando el jugador completa todos los niveles
+# Muestra puntuación final, tiempo de juego y estadísticas completas
 extends CanvasLayer
 
+# ============================================================================
+# REFERENCIAS A NODOS
+# ============================================================================
 var color_rect: ColorRect
 var center_container: CenterContainer
 var title_label: Label
@@ -13,8 +19,11 @@ var damage_label: Label
 var levels_label: Label
 var menu_button: Button
 
+# ============================================================================
+# INICIALIZACIÓN
+# ============================================================================
 func _ready() -> void:
-	# Obtener referencias de forma segura
+	# Obtener referencias de nodos de forma segura
 	color_rect = get_node_or_null("ColorRect")
 	center_container = get_node_or_null("CenterContainer")
 	
@@ -25,27 +34,35 @@ func _ready() -> void:
 			score_label = panel.get_node_or_null("ScoreLabel")
 			time_label = panel.get_node_or_null("TimeLabel")
 			stats_container = panel.get_node_or_null("StatsContainer")
+			
+			# Obtener labels de estadísticas
 			if stats_container:
 				slimes_label = stats_container.get_node_or_null("SlimesLabel")
 				orcs_label = stats_container.get_node_or_null("OrcsLabel")
 				bosses_label = stats_container.get_node_or_null("BossesLabel")
 				damage_label = stats_container.get_node_or_null("DamageLabel")
 				levels_label = stats_container.get_node_or_null("LevelsLabel")
+			
+			# Configurar botón de menú
 			menu_button = panel.get_node_or_null("MenuButton")
 			if menu_button:
+				# Evitar dobles conexiones
 				if menu_button.pressed.is_connected(_on_menu_button_pressed):
 					menu_button.pressed.disconnect(_on_menu_button_pressed)
 				menu_button.pressed.connect(_on_menu_button_pressed)
 	
-	# Asegurarse de que los nodos estén ocultos al inicio
+	# Ocultar la pantalla inicialmente
 	if color_rect: color_rect.visible = false
 	if center_container: center_container.visible = false
 
+# ============================================================================
+# MOSTRAR PANTALLA DE VICTORIA
+# ============================================================================
 func show_victory(final_score: int, stats: Dictionary) -> void:
 	print("[VictoryScreen] show_victory llamado con score: ", final_score)
 	
-	# Intentar guardar récord si SaveManager está disponible (es opcional)
-	# En Godot 4, los autoloads están disponibles globalmente, no como singletons
+	# Intentar guardar récord si SaveManager está disponible
+	# Los autoloads en Godot 4 están disponibles globalmente
 	if has_node("/root/SaveManager"):
 		var save_mgr = get_node("/root/SaveManager")
 		if save_mgr:
@@ -59,20 +76,20 @@ func show_victory(final_score: int, stats: Dictionary) -> void:
 		else:
 			print("[VictoryScreen] Advertencia: SaveManager no disponible, continuando sin guardar récord")
 	
-	# Actualizar título
+	# Actualizar título de victoria
 	if title_label:
 		title_label.text = "¡FELICIDADES! ¡GANASTE!"
 	
-	# Actualizar puntuación
+	# Actualizar puntuación final
 	if score_label:
 		score_label.text = "Puntuación Final: %d" % final_score
 	
-	# Actualizar tiempo
+	# Actualizar tiempo de juego formateado
 	if time_label and stats.has("play_time"):
 		var time_formatted = GameStats.format_time(stats.get("play_time", 0.0))
 		time_label.text = "Tiempo Total: %s" % time_formatted
 	
-	# Actualizar estadísticas
+	# Actualizar todas las estadísticas si están disponibles
 	if stats_container:
 		if slimes_label and stats.has("slimes_killed"):
 			slimes_label.text = "Slimes Eliminados: %d" % stats.get("slimes_killed", 0)
@@ -97,10 +114,14 @@ func show_victory(final_score: int, stats: Dictionary) -> void:
 		center_container.visible = true
 		print("[VictoryScreen] CenterContainer visible: ", center_container.visible)
 	
-	# Pausar el juego (esto siempre se ejecuta)
+	# Pausar el juego para que el jugador pueda ver los resultados
 	get_tree().paused = true
 	print("[VictoryScreen] Juego pausado. Pantalla de victoria mostrada.")
 
+# ============================================================================
+# NAVEGACIÓN
+# ============================================================================
+# Botón "Menú": Vuelve al menú principal y resetea todo
 func _on_menu_button_pressed() -> void:
 	# Despausar el juego
 	get_tree().paused = false

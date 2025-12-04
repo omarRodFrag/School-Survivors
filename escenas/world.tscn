@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbdfdaa0r75mf"]
+[gd_scene load_steps=16 format=3 uid="uid://cbdfdaa0r75mf"]
 
 [ext_resource type="PackedScene" uid="uid://cwn272rabpdwj" path="res://escenas/personaje_Omar.tscn" id="1_7jpok"]
 [ext_resource type="Script" uid="uid://n75k75crtlrl" path="res://scripts/world.gd" id="1_58mta"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://b7px62opvuwx3" path="res://escenas/pausa.tscn" id="6_iop0s"]
 [ext_resource type="PackedScene" uid="uid://bq8yak2m3n4p5" path="res://escenas/game_over.tscn" id="7_game_over"]
 [ext_resource type="PackedScene" uid="uid://0nxwcotcidcx" path="res://escenas/victory_screen.tscn" id="8_victory"]
+[ext_resource type="PackedScene" uid="uid://virtual_joystick" path="res://scenes/VirtualJoystick.tscn" id="9_vj"]
+[ext_resource type="PackedScene" uid="uid://touch_attack_button" path="res://scenes/TouchAttackButton.tscn" id="10_tab"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.1, 0.1, 0.1, 0.85)
@@ -143,6 +145,10 @@ text = "Mensaje"
 label_settings = SubResource("LabelSettings_jhysc")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="VirtualJoystick" parent="HUD" instance=ExtResource("9_vj")]
+
+[node name="TouchAttackButton" parent="HUD" instance=ExtResource("10_tab")]
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_jhysc")
