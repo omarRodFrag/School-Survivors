@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://6c7qnpis54vv"]
+
+[ext_resource type="Script" path="res://scripts/cinematica_inicio.gd" id="1_cinematica"]
+[ext_resource type="VideoStream" uid="uid://dp1n28qfippm7" path="res://assets/Cinematica.ogv" id="2_hn0sf"]
+
+[node name="CinematicaInicio" type="Node"]
+script = ExtResource("1_cinematica")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_hn0sf")
+speed_scale = 0.8
+autoplay = true
+expand = true
