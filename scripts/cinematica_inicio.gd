@@ -37,4 +37,3 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			_on_video_finished()  # Saltar directamente al juego
 
-
